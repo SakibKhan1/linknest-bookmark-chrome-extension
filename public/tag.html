@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Bookmark and Tag</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #121212;
+      color: white;
+      padding: 1rem;
+      width: 300px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      background-color: #1e1e1e;
+      border: 1px solid #555;
+      color: white;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      width: 100%;
+      background-color: dodgerblue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Create Bookmark</h2>
+  <form id="tagForm">
+    <label>Title
+      <input type="text" id="title" required />
+    </label>
+
+    <label>URL
+      <input type="text" id="url" placeholder="https://example.com" required />
+
+    </label>
+
+    <label>Tag
+      <select id="tagSelect">
+        <option value="personal">Personal</option>
+        <option value="reading">Reading</option>
+        <option value="videos">Videos</option>
+        <option value="work">Work</option>
+        <option value="school">School</option>
+        <option value="custom">Custom...</option>
+      </select>
+    </label>
+
+    <label id="customTagLabel" style="display:none;">Custom Tag (max: 3 words limit)
+      <input type="text" id="customTagInput" />
+    </label>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <script src="tag.js" type="module"></script>
+</body>
+</html>
