@@ -31,7 +31,7 @@ The following **required** functionality is implemented:
 
 ---
 
-### 💡 Optional Features
+### Optional Features
 
 - ✅ Predefined tag dropdown with color-coded labels (e.g. `work`, `videos`, `school`)  
 - ✅ Auto appends new bookmarks from other tabs via `chrome.runtime.onMessage`  
@@ -41,7 +41,7 @@ The following **required** functionality is implemented:
 
 ---
 
-### 🌟 Additional Features
+### Additional Features
 
 - ✅ **Custom emoji** used for branding inside the popup (📝 LN icon in header)  
 - ✅ Styled header with logo and `"LinkNest - Bookmark Manager"` title  
@@ -51,4 +51,4 @@ The following **required** functionality is implemented:
 
 ---
 
-> 🎯 All data (including tags) is stored using `chrome.storage.local` and synced with Chrome Bookmarks for a seamless experience.
+> All data (including tags) is stored using `chrome.storage.local` and synced with Chrome Bookmarks for a seamless experience.
