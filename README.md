@@ -52,3 +52,7 @@ The following **required** functionality is implemented:
 ---
 
 > All data (including tags) is stored using `chrome.storage.local` and synced with Chrome Bookmarks for a seamless experience.
+
+## Demo
+
+![App Demo](Media/demo.gif)
