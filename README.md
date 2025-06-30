@@ -6,7 +6,7 @@ With support for custom tagging (including predefined and custom tags), real-tim
 
 ---
 
-### 🛠️ Built With
+### 🔧 Built With
 
 - **React + Vite** – Fast and modern UI development
 - **Chrome Extensions API** – Bookmark manipulation and messaging
