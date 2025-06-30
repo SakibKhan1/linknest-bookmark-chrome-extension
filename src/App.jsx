@@ -5,6 +5,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData] = useState({ title: '', url: '', tag: '' });
+  const [highlightId, setHighlightId] = useState(null);
 
   useEffect(() => {
     fetchBookmarks();
@@ -18,8 +19,16 @@ function App() {
     chrome.bookmarks.onMoved.addListener(handleChange);
 
     chrome.runtime.onMessage.addListener((msg) => {
-      if (msg.type === 'bookmark-added') {
-        fetchBookmarks();
+      if (msg.type === 'bookmark-added' && msg.bookmarkId) {
+        setHighlightId(msg.bookmarkId);
+        fetchBookmarks(() => {
+          setTimeout(() => {
+            const element = document.getElementById(`bookmark-${msg.bookmarkId}`);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 100);
+        });
       }
     });
 
@@ -30,7 +39,14 @@ function App() {
     };
   }, []);
 
-  const fetchBookmarks = () => {
+  useEffect(() => {
+    if (highlightId) {
+      const timeout = setTimeout(() => setHighlightId(null), 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [highlightId]);
+
+  const fetchBookmarks = (callback) => {
     chrome.bookmarks.getTree((tree) => {
       const flat = flattenBookmarks(tree).sort((a, b) =>
         a.title.localeCompare(b.title)
@@ -42,6 +58,7 @@ function App() {
           tag: storedTags['tag-' + bm.id] || null,
         }));
         setBookmarks(withTags);
+        if (callback) callback();
       });
     });
   };
@@ -87,24 +104,31 @@ function App() {
     }
   };
 
-  const saveEdit = (id) => {
-    const wordCount = editData.tag.trim().split(/\s+/).filter(Boolean).length;
-    if (wordCount > 3) {
-      alert('Custom tags can be at most 3 words.');
-      return;
-    }
+const saveEdit = (id) => {
+  const wordCount = editData.tag.trim().split(/\s+/).filter(Boolean).length;
+  if (wordCount > 3) {
+    alert('Custom tags can be at most 3 words.');
+    return;
+  }
 
-    chrome.bookmarks.update(id, {
-      title: editData.title,
-      url: editData.url,
-    }, () => {
-      chrome.storage.local.set({ ['tag-' + id]: editData.tag }, () => {
-        fetchBookmarks();
-        setEditingId(null);
+  chrome.bookmarks.update(id, {
+    title: editData.title,
+    url: editData.url,
+  }, () => {
+    chrome.storage.local.set({ ['tag-' + id]: editData.tag }, () => {
+      setHighlightId(id); // ✅ highlight this edited bookmark
+      fetchBookmarks(() => {
+        setTimeout(() => {
+          const element = document.getElementById(`bookmark-${id}`);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100); // allow re-render
       });
+      setEditingId(null);
     });
-  };
-
+  });
+};
   return (
     <div
       style={{
@@ -119,16 +143,15 @@ function App() {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-      <img
-        src="icon128.png"
-        alt="App Icon"
-        style={{ width: '28px', height: '28px', marginRight: '8px' }}
-      />
-      <h1 style={{ fontSize: '1.2rem', fontWeight: 'bold', margin: 0 }}>
-        LinkNest - Bookmark Manager
-      </h1>
-    </div>
-
+        <img
+          src="icon128.png"
+          alt="App Icon"
+          style={{ width: '28px', height: '28px', marginRight: '8px' }}
+        />
+        <h1 style={{ fontSize: '1.2rem', fontWeight: 'bold', margin: 0 }}>
+          LinkNest - Bookmark Manager
+        </h1>
+      </div>
 
       <button
         onClick={() => {
@@ -191,10 +214,15 @@ function App() {
         {filtered.map((b) => (
           <li
             key={b.id}
+            id={`bookmark-${b.id}`}
             style={{
               marginBottom: '0.5rem',
               display: 'flex',
               alignItems: 'flex-start',
+              backgroundColor: highlightId === b.id ? 'rgba(255,165,0,0.2)' : 'transparent',
+              border: highlightId === b.id ? '2px solid yellow' : 'none',
+              borderRadius: '8px',
+              transition: 'background-color 0.5s, border 0.5s',
             }}
           >
             <button

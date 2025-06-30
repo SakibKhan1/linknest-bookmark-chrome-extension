@@ -12,9 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const title = document.getElementById('title').value.trim();
     let url = document.getElementById('url').value.trim();
-if (!/^https?:\/\//i.test(url)) {
-  url = 'https://' + url;
-}
+
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
+    }
 
     let tag = tagSelect.value === 'custom'
       ? customTagInput.value.trim()
@@ -40,12 +41,14 @@ if (!/^https?:\/\//i.test(url)) {
       }
 
       chrome.storage.local.set({ ['tag-' + newBookmark.id]: tag }, () => {
-        chrome.runtime.sendMessage({ type: 'bookmark-added' }, () => {
-  chrome.windows.getCurrent((win) => {
-    chrome.windows.remove(win.id);
-  });
-});
-
+        chrome.runtime.sendMessage(
+          { type: 'bookmark-added', bookmarkId: newBookmark.id },
+          () => {
+            chrome.windows.getCurrent((win) => {
+              chrome.windows.remove(win.id);
+            });
+          }
+        );
       });
     });
   });
