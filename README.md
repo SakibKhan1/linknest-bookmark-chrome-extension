@@ -53,8 +53,8 @@ The following **required** functionality is implemented:
 
 > All data (including tags) is stored using `chrome.storage.local` and synced with Chrome Bookmarks for a seamless experience.
 
-## Demo
+<h2>Extension Demo</h2>
 
-## Extension Demo
-
-<img src="Media/Demo.gif" width="100%" />
+<p align="center">
+  <img src="Media/Demo.gif" width="1000">
+</p>
