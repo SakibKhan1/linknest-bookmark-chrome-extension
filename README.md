@@ -17,6 +17,7 @@ With support for custom tagging (including predefined and custom tags), real-tim
 ---
 ## Privacy Policy
 LinkNest does not collect, store, or transmit any user data. All bookmarks and interactions remain entirely local to your browser.
+
 ---
 ### ✅ User Stories
 
