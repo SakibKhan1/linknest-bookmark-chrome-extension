@@ -55,4 +55,4 @@ The following **required** functionality is implemented:
 
 ## Demo
 
-![App Demo](Media/demo.gif)
+![App Demo](Media/Demo.gif)
