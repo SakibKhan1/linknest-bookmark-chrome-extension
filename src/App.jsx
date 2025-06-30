@@ -95,14 +95,22 @@ function App() {
     );
   });
 
-  const startEdit = (b) => {
-    if (editingId === b.id) {
-      setEditingId(null);
-    } else {
-      setEditingId(b.id);
-      setEditData({ title: b.title, url: b.url, tag: b.tag || '' });
-    }
-  };
+const startEdit = (b) => {
+  if (editingId === b.id) {
+    setEditingId(null);
+  } else {
+    setEditingId(b.id);
+    setEditData({ title: b.title, url: b.url, tag: b.tag || '' });
+
+
+    setTimeout(() => {
+      const element = document.getElementById(`bookmark-${b.id}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100); 
+  }
+};
 
 const saveEdit = (id) => {
   const wordCount = editData.tag.trim().split(/\s+/).filter(Boolean).length;
@@ -116,14 +124,14 @@ const saveEdit = (id) => {
     url: editData.url,
   }, () => {
     chrome.storage.local.set({ ['tag-' + id]: editData.tag }, () => {
-      setHighlightId(id); // ✅ highlight this edited bookmark
+      setHighlightId(id); 
       fetchBookmarks(() => {
         setTimeout(() => {
           const element = document.getElementById(`bookmark-${id}`);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
-        }, 100); // allow re-render
+        }, 100); 
       });
       setEditingId(null);
     });
