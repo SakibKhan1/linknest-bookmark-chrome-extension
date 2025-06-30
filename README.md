@@ -1,12 +1,54 @@
-# React + Vite
+# 🔖 LinkNest - Bookmark Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**LinkNest** is a Chrome Extension that replaces the default bookmark manager with a fast, modern, and visually organized alternative. It allows users to create, tag, edit, search, and delete bookmarks directly from a polished UI popup.
 
-Currently, two official plugins are available:
+With support for custom tagging (including predefined and custom tags), real-time editing, dark theme design, and instant filtering through a search bar, **LinkNest** is ideal for power users who want more control over their saved links.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+### 🛠️ Built With
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React + Vite** – Fast and modern UI development
+- **Chrome Extensions API** – Bookmark manipulation and messaging
+- **Local Storage** – Persisting bookmark tags via `chrome.storage.local`
+- **Custom SVG Icons** – Icons for editing and deleting
+- **Modern CSS** – Clean, responsive dark-mode styling
+
+---
+
+### ✅ User Stories
+
+The following **required** functionality is implemented:
+
+- ✅ User can **create a new bookmark** through a popup with fields for title, URL, and tags  
+- ✅ User can **assign a predefined or custom tag** to each bookmark (limited to 3 words)  
+- ✅ User can **search** for bookmarks via a search bar with real-time filtering  
+- ✅ User can **edit title, tag, or URL** of any saved bookmark using an inline form  
+- ✅ User can **cancel edits** or click the pencil icon again to exit edit mode  
+- ✅ User can **delete a bookmark** via a trash icon  
+- ✅ A white ❌ **clear icon** exists at the end of the search bar to reset the query  
+- ✅ UI consistently maintains **dark theme** with colored tag labels
+
+---
+
+### 💡 Optional Features
+
+- ✅ Predefined tag dropdown with color-coded labels (e.g. `work`, `videos`, `school`)  
+- ✅ Auto appends new bookmarks from other tabs via `chrome.runtime.onMessage`  
+- ✅ Shows **pencil icon** for editing and **trash icon** for deletion next to each bookmark  
+- ✅ Custom popup size with fixed width and scrollable height  
+- ✅ All inputs and tag dropdowns are uniformly sized for visual consistency  
+
+---
+
+### 🌟 Additional Features
+
+- ✅ **Custom emoji** used for branding inside the popup (📝 LN icon in header)  
+- ✅ Styled header with logo and `"LinkNest - Bookmark Manager"` title  
+- ✅ Clean tab spacing, margin alignment, and consistent field widths  
+- ✅ Optional fields (e.g., custom tag input) dynamically appear when needed  
+- ✅ Fully functional even if default Chrome Bookmark Manager is bypassed  
+
+---
+
+> 🎯 All data (including tags) is stored using `chrome.storage.local` and synced with Chrome Bookmarks for a seamless experience.
