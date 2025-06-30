@@ -55,4 +55,5 @@ The following **required** functionality is implemented:
 
 ## Demo
 
-![App Demo](Media/Demo.gif)
+<h2>Extension Demo</h2>
+<img src="Media/Demo.gif" width="100%" />
