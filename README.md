@@ -1,4 +1,4 @@
-# 🔖 LinkNest - Bookmark Manager
+# LinkNest - Bookmark Manager
 
 **LinkNest** is a Chrome Extension that replaces the default bookmark manager with a fast, modern, and visually organized alternative. It allows users to create, tag, edit, search, and delete bookmarks directly from a polished UI popup.
 
