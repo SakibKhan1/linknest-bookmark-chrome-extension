@@ -56,4 +56,4 @@ The following **required** functionality is implemented:
 ## Demo
 
 <h2>Extension Demo</h2>
-<img src="Media/Demo.gif" width="100%" />
+<img src="Media/Demo.gif" width="800" />
