@@ -15,8 +15,7 @@
   },
   "permissions": [
     "bookmarks",
-    "storage",
-    "notifications"
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>"
