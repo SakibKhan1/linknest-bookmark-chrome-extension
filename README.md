@@ -4,6 +4,8 @@
 
 With support for custom tagging (including predefined and custom tags), real-time editing, dark theme design, and instant filtering through a search bar, **LinkNest** is ideal for power users who want more control over their saved links.
 
+Check it out on the Chrome Web Store: https://chromewebstore.google.com/detail/linknest-bookmark-manager/fpheafpcchklcmfobomjaoehfenfalfm
+
 ---
 
 ### 🔧 Built With
